@@ -8,12 +8,9 @@
 using namespace std;
 
 int seedCaluclation(int N);
-void prova();
 
 int main()
 {
-    prova();
-    return 0;
     const int P = 18899;
     const int Q = 20023;
     const int N = P * Q;
@@ -79,14 +76,4 @@ int seedCaluclation(int N)
     }
 
     return seed;
-}
-
-void prova()
-{
-    time_t start = clock();
-    for (int i = 0; i < 10; i++)
-    {
-        cout << time(NULL) << endl;
-        Sleep(1000);
-    }
 }
