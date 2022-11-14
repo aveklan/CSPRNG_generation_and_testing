@@ -19,8 +19,10 @@ int main()
     int Blum_Blum_Shub[iterations];
     int stdRandom[iterations];
 
-    int BlumNotPassed = 0;
-    int stdRandomNotPassed = 0;
+    int BlumNotPassedM = 0;
+    int stdRandomNotPassedM = 0;
+    int BlumNotPassedR = 0;
+    int stdRandomNotPassedR = 0;
     srand(time(NULL));
     for (int i = 0; i < 10000; i++)
     {
@@ -44,23 +46,27 @@ int main()
         // cout << "Running tests on Blum Blum Shub generated sequence ..." << endl;
         TESTS blumSequence(Blum_Blum_Shub, iterations);
         if (blumSequence.monobitTest() < 0.01)
-            BlumNotPassed++;
+            BlumNotPassedM++;
 
         if (blumSequence.runsTest() < 0.01)
-            BlumNotPassed++;
+            BlumNotPassedR++;
 
         // cout << "Running tests on c++ rand() generated sequence ..." << endl;
         TESTS stdSequence(stdRandom, iterations);
 
         if (stdSequence.monobitTest() < 0.01)
-            stdRandomNotPassed++;
+            stdRandomNotPassedM++;
 
         if (stdSequence.runsTest() < 0.01)
-            stdRandomNotPassed++;
+            stdRandomNotPassedR++;
     }
 
-    cout << "Blum Blum Shub algorithm tests failed: " << BlumNotPassed << endl;
-    cout << "c++ rand() tests failed: " << stdRandomNotPassed << endl;
+    cout << "Blum Blum Shub algorithm tests failed: " << endl
+         << "Monobit: " << BlumNotPassedM << endl
+         << "RunsTest: " << BlumNotPassedR << endl;
+    cout << "c++ rand() tests failed: " << endl
+         << "Monobit: " << stdRandomNotPassedM << endl
+         << "RunsTest: " << stdRandomNotPassedR << endl;
     // int prova[100] = {1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0};
     //  int prova[10] = {1, 0, 0, 1, 1, 0, 1, 0, 1, 1};
     return 0;
