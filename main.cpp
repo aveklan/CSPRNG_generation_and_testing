@@ -29,21 +29,18 @@ int main()
         int seed = 0;
 
         seed = seedCaluclation(N);
-        // cout << "Calculated seed: " << seed << endl; // gcd(6,20) for C++17
 
         BBS numberGen(P, Q, seed);
 
-        // cout << "Generating a random sequence of bit using Blum Blum Shub algorithm ..." << endl;
+        // Generating a random sequence of bit using Blum Blum Shub algorithm
         for (int i = 0; i < iterations; i++)
             Blum_Blum_Shub[i] = numberGen.getRandBit();
 
-        // cout << "Generating a random sequence of bit using c++ rand() function ..." << endl;
+        // Generating a random sequence of bit using c++ rand() function
         for (int i = 0; i < iterations; i++)
             stdRandom[i] = rand() % 2;
 
-        // int prova[100] = {1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0};
-
-        // cout << "Running tests on Blum Blum Shub generated sequence ..." << endl;
+        // Running tests on Blum Blum Shub generated sequence
         TESTS blumSequence(Blum_Blum_Shub, iterations);
         if (blumSequence.monobitTest() < 0.01)
             BlumNotPassedM++;
@@ -51,7 +48,7 @@ int main()
         if (blumSequence.runsTest() < 0.01)
             BlumNotPassedR++;
 
-        // cout << "Running tests on c++ rand() generated sequence ..." << endl;
+        // Running tests on c++ rand() generated sequence
         TESTS stdSequence(stdRandom, iterations);
 
         if (stdSequence.monobitTest() < 0.01)
@@ -67,8 +64,6 @@ int main()
     cout << "c++ rand() tests failed: " << endl
          << "Monobit: " << stdRandomNotPassedM << endl
          << "RunsTest: " << stdRandomNotPassedR << endl;
-    // int prova[100] = {1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0};
-    //  int prova[10] = {1, 0, 0, 1, 1, 0, 1, 0, 1, 1};
     return 0;
 }
 
